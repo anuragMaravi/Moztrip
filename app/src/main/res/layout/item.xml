@@ -40,6 +40,17 @@
                     android:typeface="sans"
                     tools:text="Place Name"/>
 
+                <TextView
+                    android:id="@+id/txt_rank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="#1 on Popular Places"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="12dp"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    />
+
             </RelativeLayout>
 
     </android.support.v7.widget.CardView>
