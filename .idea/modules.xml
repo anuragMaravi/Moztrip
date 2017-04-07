@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/Moztrip.iml" filepath="$PROJECT_DIR$/Moztrip.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/infinitecycleviewpager/infinitecycleviewpager.iml" filepath="$PROJECT_DIR$/infinitecycleviewpager/infinitecycleviewpager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/infinitecycleviewpager/infinitecycleviewpager.iml" filepath="$PROJECT_DIR$/infinitecycleviewpager/infinitecycleviewpager.iml" />
     </modules>
   </component>
 </project>
