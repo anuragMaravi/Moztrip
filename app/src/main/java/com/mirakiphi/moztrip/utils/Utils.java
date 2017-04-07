@@ -1,9 +1,11 @@
 package com.mirakiphi.moztrip.utils;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.mirakiphi.moztrip.R;
 
 /**
@@ -11,7 +13,7 @@ import com.mirakiphi.moztrip.R;
  */
 public class Utils {
 
-    public static void setupItem(final View view, final LibraryObject libraryObject) {
+    public static void setupItem(Context context, final View view, final LibraryObject libraryObject) {
         final TextView txt = (TextView) view.findViewById(R.id.txt_item);
         txt.setText(libraryObject.getTitle());
 
@@ -19,7 +21,7 @@ public class Utils {
         rank.setText(libraryObject.getRank());
 
         final ImageView img = (ImageView) view.findViewById(R.id.img_item);
-        img.setImageResource(libraryObject.getRes());
+        Glide.with(context).load("https://s-media-cache-ak0.pinimg.com/originals/6d/81/7e/6d817ed9cc645bdea6c8ffffb577f3c1.jpg").into(img);
     }
 
     public static class LibraryObject {

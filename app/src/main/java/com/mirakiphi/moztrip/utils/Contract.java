@@ -7,13 +7,25 @@ package com.mirakiphi.moztrip.utils;
 public class Contract {
     public Contract(){}
     public final static String API_KEY = "AIzaSyD67eUvLlJWq_CMS2KcCAR8vwMY_xuczK8";
-    public final static String WEB_API_KEY = "AIzaSyC0rPxTg80rLUfpaKYq0_kHYX8Vu1g2RAU";
+    public final static String WEB_API_KEY = "AIzaSyAhJJu4v7ZB0SHZQ_59ycxKanYiuFI5fRc";
 
     //Places Images
     public final static String PLACE_IMAGE = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=";
 
     //Nearby Places
     public final static String NEARBY_PLACES_1 = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=";
-    public final static String NEARBY_PLACES_2 = "+point+of+interest&language=en&key=AIzaSyC0rPxTg80rLUfpaKYq0_kHYX8Vu1g2RAU";
+    public final static String POINT_OF_INTEREST = "+point+of+interest&language=en&key=" + WEB_API_KEY;
+
+
+    public final static String RESTAURANTS_1 = "https://maps.googleapis.com/maps/api/place/textsearch/json?location=";
+    public final static String RESTAURANTS_2= "&radius=500&type=restaurant&key=" + WEB_API_KEY;
+
+    public final static String HOTELS_2= "&radius=500&type=lodging&key=" + WEB_API_KEY;
+
+
+    public final static String DETAILS= "https://maps.googleapis.com/maps/api/place/details/json?placeid=";
+    public final static String DETAILS_2= "&key=" + WEB_API_KEY;
+
+
 
 }
