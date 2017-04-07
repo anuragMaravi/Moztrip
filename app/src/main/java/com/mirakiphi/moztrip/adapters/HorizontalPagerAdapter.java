@@ -13,6 +13,7 @@ import com.mirakiphi.moztrip.utils.Utils;
  * Created by GIGAMOLE on 7/27/16.
  */
 public class HorizontalPagerAdapter extends PagerAdapter {
+    //Changes
 
     private final Utils.LibraryObject[] LIBRARIES = new Utils.LibraryObject[]{
             new Utils.LibraryObject(
