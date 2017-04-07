@@ -62,7 +62,7 @@ public class HorizontalPagerAdapter extends PagerAdapter {
     public Object instantiateItem(final ViewGroup container, final int position) {
         final View view;
             view = mLayoutInflater.inflate(com.mirakiphi.moztrip.R.layout.item, container, false);
-            Utils.setupItem(view, LIBRARIES[position]);
+            Utils.setupItem(mContext, view, LIBRARIES[position]);
             container.addView(view);
             view.setOnClickListener(new View.OnClickListener() {
             @Override
