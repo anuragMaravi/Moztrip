@@ -24,6 +24,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         app:cardBackgroundColor="@android:color/transparent">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -33,19 +34,32 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="12dp"
+            android:layout_marginLeft="4dp"
+            android:alpha="0.8"
             android:src="@drawable/search" />
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/searchIcon"
+                app:cardElevation="0dp"
+                app:cardCornerRadius="14dp"
+                app:cardBackgroundColor="#50232526"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/searchIcon"
                 android:text="Search Places"
+                android:textColor="#95ffffff"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="12dp"
-                android:textSize="18dp"/>
-
-
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="16dp"
+                android:textSize="16sp"/>
+            </android.support.v7.widget.CardView>
 
         </RelativeLayout>
 
@@ -65,12 +79,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
+                android:id="@+id/newsFeedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:background="@drawable/buttontrans"
                 android:text="NEWS FEED"
-                android:textColor="#90ffffff"
+                android:textColor="#95ffffff"
                 android:padding="12dp"/>
 
         </RelativeLayout>
