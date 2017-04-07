@@ -25,7 +25,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD67eUvLlJWq_CMS2KcCAR8vwMY_xuczK8" />
 
-        <activity android:name=".utils.PlaceActivity"></activity>
+        <activity android:name=".PlaceActivity"></activity>
     </application>
 
 </manifest>
