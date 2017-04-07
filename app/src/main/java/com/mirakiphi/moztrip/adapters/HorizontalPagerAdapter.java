@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.mirakiphi.infinitecycleviewpager.VerticalInfiniteCycleViewPager;
 import com.mirakiphi.moztrip.R;
 import com.mirakiphi.moztrip.utils.Utils;
 
@@ -19,19 +18,19 @@ public class HorizontalPagerAdapter extends PagerAdapter {
     private final Utils.LibraryObject[] LIBRARIES = new Utils.LibraryObject[]{
             new Utils.LibraryObject(
                     com.mirakiphi.moztrip.R.drawable.ic_strategy,
-                    "Strategy"
+                    "Place 1","#1 on Popular PLaces"
             ),
             new Utils.LibraryObject(
                     R.drawable.ic_design,
-                    "Design"
+                    "Place 2","#2 on Popular PLaces"
             ),
             new Utils.LibraryObject(
                     com.mirakiphi.moztrip.R.drawable.ic_development,
-                    "Development 3"
+                    "Place 3","#3 on Popular PLaces"
             ),
             new Utils.LibraryObject(
                     com.mirakiphi.moztrip.R.drawable.ic_qa,
-                    "Place 4"
+                    "Place 4","#4 on Popular PLaces"
             )
     };
 
@@ -60,21 +59,9 @@ public class HorizontalPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(final ViewGroup container, final int position) {
         final View view;
-        if (mIsTwoWay) {
-            view = mLayoutInflater.inflate(com.mirakiphi.moztrip.R.layout.two_way_item, container, false);
-
-            final VerticalInfiniteCycleViewPager verticalInfiniteCycleViewPager =
-                    (VerticalInfiniteCycleViewPager) view.findViewById(com.mirakiphi.moztrip.R.id.vicvp);
-            verticalInfiniteCycleViewPager.setAdapter(
-                    new VerticalPagerAdapter(mContext)
-            );
-            verticalInfiniteCycleViewPager.setCurrentItem(position);
-        } else {
             view = mLayoutInflater.inflate(com.mirakiphi.moztrip.R.layout.item, container, false);
             Utils.setupItem(view, LIBRARIES[position]);
             container.addView(view);
-
-        }
         return view;
 
     }
