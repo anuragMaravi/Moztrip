@@ -16,7 +16,6 @@ import com.mirakiphi.moztrip.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    //New UI
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
