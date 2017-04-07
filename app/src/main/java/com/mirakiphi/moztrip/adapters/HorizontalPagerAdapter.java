@@ -19,20 +19,20 @@ public class HorizontalPagerAdapter extends PagerAdapter {
 
     private final Utils.LibraryObject[] LIBRARIES = new Utils.LibraryObject[]{
             new Utils.LibraryObject(
-                    com.mirakiphi.moztrip.R.drawable.ic_strategy,
-                    "Place 1","#1 on Popular PLaces"
+                    R.drawable.place2sample,
+                    "Place 1","#1 on Popular Places"
             ),
             new Utils.LibraryObject(
-                    R.drawable.ic_design,
-                    "Place 2","#2 on Popular PLaces"
+                    R.drawable.place1sample,
+                    "Place 2","#2 on Popular Places"
             ),
             new Utils.LibraryObject(
-                    com.mirakiphi.moztrip.R.drawable.ic_development,
-                    "Place 3","#3 on Popular PLaces"
+                    R.drawable.place2sample,
+                    "Place 3","#3 on Popular Places"
             ),
             new Utils.LibraryObject(
-                    com.mirakiphi.moztrip.R.drawable.ic_qa,
-                    "Place 4","#4 on Popular PLaces"
+                    R.drawable.place1sample,
+                    "Place 4","#4 on Popular Places"
             )
     };
 
@@ -64,7 +64,7 @@ public class HorizontalPagerAdapter extends PagerAdapter {
             view = mLayoutInflater.inflate(com.mirakiphi.moztrip.R.layout.item, container, false);
             Utils.setupItem(view, LIBRARIES[position]);
             container.addView(view);
-        view.setOnClickListener(new View.OnClickListener() {
+            view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent newi=new Intent(mContext, PlaceActivity.class);
