@@ -1,13 +1,12 @@
 package com.mirakiphi.moztrip.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.mirakiphi.moztrip.PlaceActivity;
+import com.mirakiphi.infinitecycleviewpager.VerticalInfiniteCycleViewPager;
 import com.mirakiphi.moztrip.R;
 import com.mirakiphi.moztrip.utils.Utils;
 
@@ -19,24 +18,20 @@ public class HorizontalPagerAdapter extends PagerAdapter {
 
     private final Utils.LibraryObject[] LIBRARIES = new Utils.LibraryObject[]{
             new Utils.LibraryObject(
-                    R.drawable.place2sample,
-                    "Place 1"
+                    com.mirakiphi.moztrip.R.drawable.ic_strategy,
+                    "Strategy"
             ),
             new Utils.LibraryObject(
-                    R.drawable.place1sample,
-                    "Place 2"
+                    R.drawable.ic_design,
+                    "Design"
             ),
             new Utils.LibraryObject(
                     com.mirakiphi.moztrip.R.drawable.ic_development,
-                    "Place 3"
+                    "Development 3"
             ),
             new Utils.LibraryObject(
                     com.mirakiphi.moztrip.R.drawable.ic_qa,
                     "Place 4"
-            ),
-            new Utils.LibraryObject(
-                    com.mirakiphi.moztrip.R.drawable.ic_qa,
-                    "Place 5"
             )
     };
 
@@ -65,18 +60,23 @@ public class HorizontalPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(final ViewGroup container, final int position) {
         final View view;
+        if (mIsTwoWay) {
+            view = mLayoutInflater.inflate(com.mirakiphi.moztrip.R.layout.two_way_item, container, false);
+
+            final VerticalInfiniteCycleViewPager verticalInfiniteCycleViewPager =
+                    (VerticalInfiniteCycleViewPager) view.findViewById(com.mirakiphi.moztrip.R.id.vicvp);
+            verticalInfiniteCycleViewPager.setAdapter(
+                    new VerticalPagerAdapter(mContext)
+            );
+            verticalInfiniteCycleViewPager.setCurrentItem(position);
+        } else {
             view = mLayoutInflater.inflate(com.mirakiphi.moztrip.R.layout.item, container, false);
             Utils.setupItem(view, LIBRARIES[position]);
-        container.addView(view);
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent newi = new Intent(mContext, PlaceActivity.class);
-                mContext.startActivity(newi);
+            container.addView(view);
 
-            }
-        });
+        }
         return view;
+
     }
 
     @Override
@@ -89,3 +89,4 @@ public class HorizontalPagerAdapter extends PagerAdapter {
         container.removeView((View) object);
     }
 }
+

@@ -7,7 +7,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.gigamole.navigationtabstrip.NavigationTabStrip;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -17,11 +22,17 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
+import com.mirakiphi.moztrip.VolleySingleton;
 import com.mirakiphi.moztrip.adapters.MainPagerAdapter;
+
+import static com.mirakiphi.moztrip.utils.Contract.WEB_API_KEY;
 
 public class MainActivity extends AppCompatActivity {
 
-     GoogleApiClient mGoogleApiClient;
+    private static final String TAG = MainActivity.class.getSimpleName();
+    GoogleApiClient mGoogleApiClient;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +57,31 @@ public class MainActivity extends AppCompatActivity {
         final NavigationTabStrip navigationTabStrip = (NavigationTabStrip) findViewById(com.mirakiphi.moztrip.R.id.nts);
         navigationTabStrip.setTitles("HOW WE WORK", "WE WORK WITH");
         navigationTabStrip.setViewPager(viewPager);
+
+
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&type=restaurant&keyword=cruise&key=" + WEB_API_KEY,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.i("Volley", "onResponse(MoviePopular): " + response);
+
+//                                try {
+//
+//
+//                                } catch (JSONException e) {
+//                                    e.printStackTrace();
+//                                }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Some Error Occured", Toast.LENGTH_SHORT).show();
+            }
+        });
+        // Add the request to the RequestQueue.
+        VolleySingleton.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
+
     }
 
     public void findPlace(View view) {
@@ -66,16 +102,17 @@ public class MainActivity extends AppCompatActivity {
 // retrive the data by using getPlace() method.
                 Place place = PlaceAutocomplete.getPlace(this, data);
                 Log.e("Tag", "Place: " + place.getAddress() + place.getPhoneNumber()+place.getLatLng()+place.getId());
-                Intent intent=new Intent(MainActivity.this,TempImageActivity.class);
-                intent.putExtra("Name",place.getName());
-                intent.putExtra("Phone_Number",place.getPhoneNumber());
-                intent.putExtra("LatLng",place.getLatLng());
-                intent.putExtra("Rating",place.getRating());
-                intent.putExtra("Address",place.getAddress());
-                intent.putExtra("Website",place.getWebsiteUri());
-                intent.putExtra("PriceLevel",place.getPriceLevel());
-                intent.putExtra("ID",place.getId());
-                startActivity(intent);
+//                Intent intent=new Intent(MainActivity.this,TempImageActivity.class);
+//                intent.putExtra("Name",place.getName());
+//                intent.putExtra("Phone_Number",place.getPhoneNumber());
+//                intent.putExtra("LatLng",place.getLatLng());
+//                intent.putExtra("Rating",place.getRating());
+//                intent.putExtra("Address",place.getAddress());
+//                intent.putExtra("Website",place.getWebsiteUri());
+//                intent.putExtra("PriceLevel",place.getPriceLevel());
+//                intent.putExtra("ID",place.getId());
+//                startActivity(intent);
+
 
             } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
                 Status status = PlaceAutocomplete.getStatus(this, data);
@@ -87,4 +124,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 }
