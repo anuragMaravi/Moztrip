@@ -1,11 +1,13 @@
 package com.mirakiphi.moztrip.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.mirakiphi.moztrip.PlaceActivity;
 import com.mirakiphi.moztrip.R;
 import com.mirakiphi.moztrip.utils.Utils;
 
@@ -62,7 +64,14 @@ public class HorizontalPagerAdapter extends PagerAdapter {
             view = mLayoutInflater.inflate(com.mirakiphi.moztrip.R.layout.item, container, false);
             Utils.setupItem(view, LIBRARIES[position]);
             container.addView(view);
-        return view;
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent newi=new Intent(mContext, PlaceActivity.class);
+                mContext.startActivity(newi);
+            }
+        });
+                return view;
 
     }
 
