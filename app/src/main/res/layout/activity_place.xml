@@ -1,0 +1,87 @@
+<RelativeLayout android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="260dp"
+    android:id="@+id/relativeL1">
+    <ImageView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:src="@drawable/place2sample"
+    android:scaleType="centerCrop"
+    android:id="@+id/PlaceImageHead"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="PLACE NAME"
+        android:textSize="21sp"
+        android:layout_margin="16dp"
+        android:textStyle="bold"
+        android:textColor="#fff"/>
+
+</RelativeLayout>
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relativeL1"
+        android:textSize="18sp"
+        android:text="Address goes here"
+        android:padding="10dp" />
+    <Button
+        android:id="@+id/directionsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/address"
+        android:layout_margin="24dp"
+        android:text="MAPS AND DIRECTIONS"
+        android:textSize="21sp"
+        android:padding="18dp"
+        android:background="#4CAF50"
+        android:elevation="10dp"/>
+    <RelativeLayout
+        android:id="@+id/relativeL2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/directionsButton">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:text="Tourist places >"
+        android:padding="10dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/relativeL3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relativeL2">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:text="Hotels >"
+            android:padding="10dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeL4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relativeL3">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:text="Restaurants >"
+            android:padding="10dp"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>
