@@ -5,13 +5,13 @@
              android:layout_height="match_parent"
              android:clipChildren="false">
 
-    <com.gigamole.sample.utils.SquareFrameLayout
+    <com.mirakiphi.moztrip.utils.SquareFrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:clipChildren="false">
 
-        <com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
+        <com.mirakiphi.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
             android:id="@+id/hicvp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -23,6 +23,6 @@
             app:icvp_min_page_scale="0.7"
             app:icvp_min_page_scale_offset="0dp"/>
 
-    </com.gigamole.sample.utils.SquareFrameLayout>
+    </com.mirakiphi.moztrip.utils.SquareFrameLayout>
 
 </FrameLayout>
