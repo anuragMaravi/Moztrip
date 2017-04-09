@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -18,7 +17,7 @@ import java.util.List;
  * Created by anuragmaravi on 30/01/17.
  */
 
-public class TouristPlacesAdapter extends RecyclerView.Adapter<TouristPlacesAdapter.MyViewHolder>  {
+public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.MyViewHolder>  {
 
     private Context mContext;
     private List<Model> movieList = null;
@@ -27,22 +26,21 @@ public class TouristPlacesAdapter extends RecyclerView.Adapter<TouristPlacesAdap
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_tourist_places, parent, false);
-        return new TouristPlacesAdapter.MyViewHolder(itemView);
+        return new RestaurantsAdapter.MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final Model movie = movieList.get(position);
-        holder.textViewTP.setText(movie.getTpName());
-        Glide.with(mContext).load(movie.getTpReference()).into(holder.imageViewTP);
+        holder.textViewTP.setText(movie.getResName());
+        Glide.with(mContext).load(movie.getResPhoto()).into(holder.imageViewTP);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, HotelActivity.class);
-                intent.putExtra("place_id", movie.getTpPlaceID());
+                intent.putExtra("place_id",movie.getResPlaceID());
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext.startActivity(intent);
-                Toast.makeText(mContext, "Clicked", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -52,7 +50,7 @@ public class TouristPlacesAdapter extends RecyclerView.Adapter<TouristPlacesAdap
         return movieList.size();
     }
 
-    public TouristPlacesAdapter(Context mContext, List<Model> movieList) {
+    public RestaurantsAdapter(Context mContext, List<Model> movieList) {
         this.mContext = mContext;
         this.movieList = movieList;
     }

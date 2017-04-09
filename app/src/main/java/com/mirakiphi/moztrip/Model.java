@@ -12,6 +12,13 @@ public class Model {
     tpRating,
     tpReference;
 
+    private String resName,
+    resPlaceID,
+    resRating,
+    resPhoto,
+    resPrice;
+
+
 
     public String getTpName() {
         return tpName;
@@ -43,5 +50,45 @@ public class Model {
 
     public void setTpReference(String tpReference) {
         this.tpReference = tpReference;
+    }
+
+    public String getResName() {
+        return resName;
+    }
+
+    public void setResName(String resName) {
+        this.resName = resName;
+    }
+
+    public String getResPlaceID() {
+        return resPlaceID;
+    }
+
+    public void setResPlaceID(String resPlaceID) {
+        this.resPlaceID = resPlaceID;
+    }
+
+    public String getResRating() {
+        return resRating;
+    }
+
+    public void setResRating(String resRating) {
+        this.resRating = resRating;
+    }
+
+    public String getResPhoto() {
+        return resPhoto;
+    }
+
+    public void setResPhoto(String resPhoto) {
+        this.resPhoto = resPhoto;
+    }
+
+    public String getResPrice() {
+        return resPrice;
+    }
+
+    public void setResPrice(String resPrice) {
+        this.resPrice = resPrice;
     }
 }

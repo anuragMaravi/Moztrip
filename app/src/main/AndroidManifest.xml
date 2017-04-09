@@ -3,7 +3,9 @@
     package="com.mirakiphi.moztrip">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -16,6 +18,13 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".screens.splashscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -25,7 +34,18 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD67eUvLlJWq_CMS2KcCAR8vwMY_xuczK8" />
 
-        <activity android:name=".utils.PlaceActivity"></activity>
+        <activity
+            android:name=".PlaceActivity"
+            android:theme="@style/Details" />
+        <activity android:name=".utils.articles" />
+        <activity android:name=".utils.fare_calculator" />
+        <activity
+            android:name=".HotelActivity"
+            android:theme="@style/Details" />
+        <activity
+            android:name=".screens.ListActivity"
+            android:label="@string/title_activity_list"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

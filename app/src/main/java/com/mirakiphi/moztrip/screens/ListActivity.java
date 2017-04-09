@@ -1,22 +1,21 @@
 package com.mirakiphi.moztrip.screens;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.mirakiphi.infinitecycleviewpager.HorizontalInfiniteCycleViewPager;
+import com.mirakiphi.moztrip.ListAdapter;
 import com.mirakiphi.moztrip.Model;
+import com.mirakiphi.moztrip.R;
 import com.mirakiphi.moztrip.VolleySingleton;
-import com.mirakiphi.moztrip.adapters.HorizontalPagerAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,40 +24,43 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.mirakiphi.moztrip.utils.Contract.NEARBY_PLACES_1;
+import static com.mirakiphi.moztrip.utils.Contract.DETAILS_2;
+import static com.mirakiphi.moztrip.utils.Contract.NEARBY_SEARCH1;
 import static com.mirakiphi.moztrip.utils.Contract.PLACE_IMAGE;
-import static com.mirakiphi.moztrip.utils.Contract.POINT_OF_INTEREST_NEAR;
 import static com.mirakiphi.moztrip.utils.Contract.WEB_API_KEY;
 
-/**
- * Created by GIGAMOLE on 8/18/16.
- */
-public class HorizontalPagerFragment extends Fragment {
-
+public class ListActivity extends AppCompatActivity {
+    //Places to visit
+    private RecyclerView recyclerViewTouristPlaces;
     private List<Model> touristPlacesList = new ArrayList<>();
-    String cityName;
-
-    @Nullable
-    @Override
-    public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable final Bundle savedInstanceState) {
-        cityName = getArguments().getString("cityName");
-
-        return inflater.inflate(com.mirakiphi.moztrip.R.layout.fragment_horizontal, container, false);
-    }
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManagerTouristPlaces;
 
     @Override
-    public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, NEARBY_PLACES_1 + "India" + POINT_OF_INTEREST_NEAR,
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_list);
+
+
+        /**
+         *Tourist Places *************************************************************************
+         */
+        layoutManagerTouristPlaces = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerViewTouristPlaces = (RecyclerView) findViewById(R.id.recyclerViewTouristPlaces);
+        recyclerViewTouristPlaces.setLayoutManager(layoutManagerTouristPlaces);
+        recyclerViewTouristPlaces.setItemAnimator(new DefaultItemAnimator());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, NEARBY_SEARCH1 + getIntent().getStringExtra("latitude") +","+ getIntent().getStringExtra("longitude") + "&type=" + getIntent().getStringExtra("tag") + DETAILS_2,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.i("Volley", "onResponse(Current): " + response);
+                        Log.i("URL", "onCreate: " + NEARBY_SEARCH1 + getIntent().getStringExtra("latitude") +","+ getIntent().getStringExtra("longitude") + "&radius=99999&type=" + getIntent().getStringExtra("tag") + DETAILS_2);
+
+                        Log.i("Volley", "onResponse(Tourist Places): " + response);
                         try {
                             JSONObject parentObject = new JSONObject(response);
                             JSONArray parentArray = parentObject.getJSONArray("results");
-                            for (int i = 0; i < 5; i++) {
+                            for (int i = 0; i < parentArray.length(); i++) {
                                 JSONObject finalObject = parentArray.getJSONObject(i);
                                 Model model = new Model();
                                 model.setTpName(finalObject.getString("name"));
@@ -76,20 +78,18 @@ public class HorizontalPagerFragment extends Fragment {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
-                        final HorizontalInfiniteCycleViewPager horizontalInfiniteCycleViewPager =
-                                (HorizontalInfiniteCycleViewPager) view.findViewById(com.mirakiphi.moztrip.R.id.hicvp);
-                        horizontalInfiniteCycleViewPager.setAdapter(new HorizontalPagerAdapter(getContext(), false, touristPlacesList));
-
+                        adapter = new ListAdapter(getApplicationContext(), touristPlacesList);
+                        recyclerViewTouristPlaces.setAdapter(adapter);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getActivity(), "Some Error Occurred. Please check your internet connection.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Some Error Occurred", Toast.LENGTH_SHORT).show();
             }
         });
         // Add the request to the RequestQueue.
-        VolleySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
+        VolleySingleton.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
+
 
     }
 

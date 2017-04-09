@@ -35,7 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.mirakiphi.moztrip.utils.Contract.NEARBY_PLACES_1;
-import static com.mirakiphi.moztrip.utils.Contract.NEARBY_PLACES_2;
+import static com.mirakiphi.moztrip.utils.Contract.POINT_OF_INTEREST;
 import static com.mirakiphi.moztrip.utils.Contract.PLACE_IMAGE;
 import static com.mirakiphi.moztrip.utils.Contract.WEB_API_KEY;
 
@@ -79,7 +79,7 @@ public class TempImageActivity extends AppCompatActivity {
         recyclerViewTouristPlaces = (RecyclerView) findViewById(R.id.recyclerViewTouristPlaces);
         recyclerViewTouristPlaces.setLayoutManager(layoutManagerTouristPlaces);
         recyclerViewTouristPlaces.setItemAnimator(new DefaultItemAnimator());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, NEARBY_PLACES_1 + intent.getStringExtra("Name") + NEARBY_PLACES_2,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, NEARBY_PLACES_1 + intent.getStringExtra("Name") + POINT_OF_INTEREST,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

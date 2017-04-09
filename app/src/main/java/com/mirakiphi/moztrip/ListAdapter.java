@@ -18,7 +18,7 @@ import java.util.List;
  * Created by anuragmaravi on 30/01/17.
  */
 
-public class TouristPlacesAdapter extends RecyclerView.Adapter<TouristPlacesAdapter.MyViewHolder>  {
+public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>  {
 
     private Context mContext;
     private List<Model> movieList = null;
@@ -26,15 +26,15 @@ public class TouristPlacesAdapter extends RecyclerView.Adapter<TouristPlacesAdap
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_tourist_places, parent, false);
-        return new TouristPlacesAdapter.MyViewHolder(itemView);
+                .inflate(R.layout.item_tourist_places1, parent, false);
+        return new ListAdapter.MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final Model movie = movieList.get(position);
-        holder.textViewTP.setText(movie.getTpName());
-        Glide.with(mContext).load(movie.getTpReference()).into(holder.imageViewTP);
+        holder.textViewTP1.setText(movie.getTpName());
+        Glide.with(mContext).load(movie.getTpReference()).into(holder.imageViewTP1);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,18 +52,18 @@ public class TouristPlacesAdapter extends RecyclerView.Adapter<TouristPlacesAdap
         return movieList.size();
     }
 
-    public TouristPlacesAdapter(Context mContext, List<Model> movieList) {
+    public ListAdapter(Context mContext, List<Model> movieList) {
         this.mContext = mContext;
         this.movieList = movieList;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public ImageView imageViewTP;
-        public TextView textViewTP;
+        public ImageView imageViewTP1;
+        public TextView textViewTP1;
         public MyViewHolder(View view) {
             super(view);
-            imageViewTP = (ImageView) view.findViewById(R.id.imageViewTP);
-            textViewTP = (TextView) view.findViewById(R.id.textViewTP);
+            imageViewTP1 = (ImageView) view.findViewById(R.id.imageViewTP1);
+            textViewTP1 = (TextView) view.findViewById(R.id.textViewTP1);
         }
     }
 }
