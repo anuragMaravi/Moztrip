@@ -46,6 +46,7 @@ public class ListActivity extends AppCompatActivity {
         /**
          *Tourist Places *************************************************************************
          */
+        //
         layoutManagerTouristPlaces = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerViewTouristPlaces = (RecyclerView) findViewById(R.id.recyclerViewTouristPlaces);
         recyclerViewTouristPlaces.setLayoutManager(layoutManagerTouristPlaces);
