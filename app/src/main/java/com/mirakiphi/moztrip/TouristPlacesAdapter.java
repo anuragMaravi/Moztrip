@@ -42,7 +42,7 @@ public class TouristPlacesAdapter extends RecyclerView.Adapter<TouristPlacesAdap
                 intent.putExtra("place_id", movie.getTpPlaceID());
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext.startActivity(intent);
-                Toast.makeText(mContext, "Clicked", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(mContext, "Clicked", Toast.LENGTH_SHORT).show();
             }
         });
     }

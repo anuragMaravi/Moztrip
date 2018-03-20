@@ -50,7 +50,7 @@ public class HorizontalPagerFragment extends Fragment {
     public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, NEARBY_PLACES_1 + "India" + POINT_OF_INTEREST_NEAR,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, NEARBY_PLACES_1 + "Jaipur" + POINT_OF_INTEREST_NEAR,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

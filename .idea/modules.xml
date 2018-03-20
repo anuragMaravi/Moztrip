@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Moztrip.iml" filepath="$PROJECT_DIR$/Moztrip.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Moztrip.iml" filepath="$PROJECT_DIR$/.idea/Moztrip.iml" />
+      <module fileurl="file://C:\Users\harshit\AndroidStudioProjects\Moztrip\Moztrip.iml" filepath="C:\Users\harshit\AndroidStudioProjects\Moztrip\Moztrip.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\harshit\AndroidStudioProjects\Moztrip\app\app.iml" filepath="C:\Users\harshit\AndroidStudioProjects\Moztrip\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/infinitecycleviewpager/infinitecycleviewpager.iml" filepath="$PROJECT_DIR$/infinitecycleviewpager/infinitecycleviewpager.iml" />
+      <module fileurl="file://C:\Users\harshit\AndroidStudioProjects\Moztrip\infinitecycleviewpager\infinitecycleviewpager.iml" filepath="C:\Users\harshit\AndroidStudioProjects\Moztrip\infinitecycleviewpager\infinitecycleviewpager.iml" />
     </modules>
   </component>
 </project>

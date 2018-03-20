@@ -87,7 +87,7 @@ public class HotelActivity extends AppCompatActivity {
                                        JSONObject jobj2 = jobj.getJSONObject("location");
 
                                        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                                               Uri.parse("http://maps.google.com/maps?saddr=12.823706,80.044241&daddr=" + jobj2.getString("lat") + ","+ jobj2.getString("lng")));
+                                               Uri.parse("http://maps.google.com/maps?saddr=26.8801966,75.8110854&daddr=" + jobj2.getString("lat") + ","+ jobj2.getString("lng")));
                                        startActivity(intent);
                                    } catch (JSONException e) {
                                        e.printStackTrace();

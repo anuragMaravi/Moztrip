@@ -13,6 +13,7 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -35,6 +36,7 @@ import com.mirakiphi.moztrip.R;
 import com.mirakiphi.moztrip.adapters.MainPagerAdapter;
 import com.mirakiphi.moztrip.utils.articles;
 import com.mirakiphi.moztrip.utils.fare_calculator;
+import com.mirakiphi.moztrip.wallet.Wallet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -52,12 +54,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             linearLayout5,
             linearLayout6,
             linearLayout7,
-            linearLayout8;
+            linearLayout8,
+            linearLayout9;
 
 
-    public static final int REQUEST_READ_PERMISSION=223;
+    public static final int REQUEST_READ_PERMISSION = 223;
     LocationManager locationManager;
-    double latitude,longitude;
+    double latitude, longitude;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         linearLayout6 = (LinearLayout) findViewById(R.id.linearLayout6);
         linearLayout7 = (LinearLayout) findViewById(R.id.linearLayout7);
         linearLayout8 = (LinearLayout) findViewById(R.id.linearLayout8);
+        linearLayout9 = (LinearLayout) findViewById(R.id.linearLayout18);
 
         linearLayout7.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +89,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             @Override
             public void onClick(View v) {
                 Intent intentfare = new Intent(MainActivity.this, fare_calculator.class);
+                startActivity(intentfare);
+            }
+        });
+
+        linearLayout9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentfare = new Intent(MainActivity.this, Wallet.class);
                 startActivity(intentfare);
             }
         });
@@ -120,16 +133,16 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 // retrive the data by using getPlace() method.
                 Place place = PlaceAutocomplete.getPlace(this, data);
                 Log.e("Tag", "Place: " + place.getLatLng());
-                Intent intent=new Intent(MainActivity.this,PlaceActivity.class);
-                intent.putExtra("Name",place.getName());
-                intent.putExtra("Phone_Number",place.getPhoneNumber());
-                intent.putExtra("Latitude",String.valueOf(place.getLatLng().latitude));
-                intent.putExtra("Longitude",String.valueOf(place.getLatLng().longitude));
-                intent.putExtra("Rating",place.getRating());
-                intent.putExtra("Address",place.getAddress());
-                intent.putExtra("Website",place.getWebsiteUri());
-                intent.putExtra("PriceLevel",place.getPriceLevel());
-                intent.putExtra("ID",place.getId());
+                Intent intent = new Intent(MainActivity.this, PlaceActivity.class);
+                intent.putExtra("Name", place.getName());
+                intent.putExtra("Phone_Number", place.getPhoneNumber());
+                intent.putExtra("Latitude", String.valueOf(place.getLatLng().latitude));
+                intent.putExtra("Longitude", String.valueOf(place.getLatLng().longitude));
+                intent.putExtra("Rating", place.getRating());
+                intent.putExtra("Address", place.getAddress());
+                intent.putExtra("Website", place.getWebsiteUri());
+                intent.putExtra("PriceLevel", place.getPriceLevel());
+                intent.putExtra("ID", place.getId());
                 startActivity(intent);
 
             } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
@@ -151,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions( new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_READ_PERMISSION);
+                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_READ_PERMISSION);
             } else {
                 lock_on();
             }
@@ -178,12 +191,23 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         }
     }
+
     private List<Model> touristPlacesList = new ArrayList<>();
-    void lock_on()
-    {
+
+    void lock_on() {
         final String provider;
-        locationManager=(LocationManager)getSystemService(Context.LOCATION_SERVICE);
-        provider=locationManager.getBestProvider(new Criteria(),true);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        provider = locationManager.getBestProvider(new Criteria(), true);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         Location location = locationManager.getLastKnownLocation(provider);
         locationManager.requestLocationUpdates(provider,1000, 1,MainActivity.this);
 
@@ -198,8 +222,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             try {
                 addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                 String cityName = addresses.get(0).getAddressLine(2);
-                cityName = cityName.replace(",", "+");
-                cityName = cityName.replace(" ", "+");
+                if(cityName!=null) {
+                    cityName = cityName.replace(",", "+");
+                    cityName = cityName.replace(" ", "+");
+                }
                 final ViewPager viewPager = (ViewPager) findViewById(com.mirakiphi.moztrip.R.id.vp_main);
                 viewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager(), cityName));
                 viewPager.setOffscreenPageLimit(2);
